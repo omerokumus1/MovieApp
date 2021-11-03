@@ -3,6 +3,8 @@ package com.example.movieapp.View
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.RecyclerView
+import com.example.movieapp.Adapter.PostAdapter
 import com.example.movieapp.Constants
 import com.example.movieapp.Interface.PostApi
 import com.example.movieapp.Model.PostModel
@@ -18,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private val gson: Gson = GsonBuilder().setLenient().create()
+    lateinit var recyclerView: RecyclerView
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
@@ -28,24 +31,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        recyclerView = findViewById(R.id.recyclerView)
+
         getPosts()
     }
 
-    private fun getPosts() {
-        val postApi = retrofit.create(PostApi::class.java)
+    // move to ViewModel
+    private fun initPosts(postModels: MutableList<PostModel>) {
+        val postAdapter = PostAdapter(postModels, applicationContext)
+        recyclerView.adapter = postAdapter
+    }
 
+    private fun getPosts() { // move to ViewModel
+        val postApi = retrofit.create(PostApi::class.java)
         val call: Call<List<PostModel>> = postApi.getPosts()
 
         call.enqueue(object : Callback<List<PostModel>> {
             override fun onFailure(call: Call<List<PostModel>>?, t: Throwable?) {
-                throw t!!
+
             }
 
             override fun onResponse(
                 call: Call<List<PostModel>>?,
                 response: Response<List<PostModel>>?
             ) {
-                Log.d("incoming data", response?.body()?.get(0)?.title.toString())
+                val postModels = response?.body() as MutableList<PostModel>
+                initPosts(postModels)
             }
 
         })
