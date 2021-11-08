@@ -1,5 +1,7 @@
 package com.example.movieapp
 
+// const. değerleri build config ile tanımla; android'i nasıl build config'e tanımlarım
+// product flavor: uyg. farklı biçimde çıkmasını sağlar. Free -> paid gibi dönüşümler
 class Constants {
     companion object{
         val BASE_URL = "https://jsonplaceholder.typicode.com"

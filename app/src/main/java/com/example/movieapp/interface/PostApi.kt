@@ -1,6 +1,6 @@
-package com.example.movieapp.Interface
+package com.example.movieapp.`interface`
 
-import com.example.movieapp.Model.PostModel
+import com.example.movieapp.model.PostModel
 import retrofit2.Call
 import retrofit2.http.GET
 

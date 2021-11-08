@@ -1,15 +1,14 @@
-package com.example.movieapp.Adapter
+package com.example.movieapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.Model.PostModel
+import com.example.movieapp.model.PostModel
 import com.example.movieapp.R
 
-class PostAdapter(private val postModels: MutableList<PostModel>, val context: Context) :
+class PostAdapter(private val postModels: MutableList<PostModel>) :
     RecyclerView.Adapter<PostAdapter.ViewHolder>()
     {
 
@@ -28,14 +27,22 @@ class PostAdapter(private val postModels: MutableList<PostModel>, val context: C
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = postModels[position]
-        holder.textViewId.text = item.id.toString()
-        holder.textViewTitle.text = item.title
-        holder.textViewBody.text = item.title
+        // scope functions: run, apply vs
+        postModels[position].run {
+            holder.textViewId.text = id.toString()
+            holder.textViewTitle.text = title
+            holder.textViewBody.text = body
+        }
+//        holder.run {
+//            textViewId.text = postModels[position].id.toString()
+//            textViewTitle.text = postModels[position].title
+//            textViewBody.text = postModels[position].body
+//        }
+//        holder.textViewId.text = item.id.toString()
+//        holder.textViewTitle.text = item.title
+//        holder.textViewBody.text = item.body
 
     }
 
-    override fun getItemCount(): Int {
-        return postModels.size
-    }
+    override fun getItemCount() = postModels.size
 }
