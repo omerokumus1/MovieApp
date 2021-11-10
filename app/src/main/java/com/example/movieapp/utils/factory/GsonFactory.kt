@@ -1,4 +1,4 @@
-package com.example.movieapp.factory
+package com.example.movieapp.utils.factory
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

@@ -1,8 +1,9 @@
-package com.example.movieapp.`interface`
+package com.example.movieapp.utils.`interface`
 
-import com.example.movieapp.model.PostModel
+import com.example.movieapp.ui.list.PostModel
 import retrofit2.Call
 import retrofit2.http.GET
+import javax.inject.Inject
 
 interface PostApi {
 

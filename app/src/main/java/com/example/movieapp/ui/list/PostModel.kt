@@ -1,4 +1,4 @@
-package com.example.movieapp.model
+package com.example.movieapp.ui.list
 
 data class PostModel(
     val userId: Int,

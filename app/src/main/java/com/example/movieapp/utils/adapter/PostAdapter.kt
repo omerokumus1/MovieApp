@@ -1,12 +1,12 @@
-package com.example.movieapp.adapter
+package com.example.movieapp.utils.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.model.PostModel
 import com.example.movieapp.R
+import com.example.movieapp.ui.list.PostModel
 
 class PostAdapter(private val postModels: MutableList<PostModel>) :
     RecyclerView.Adapter<PostAdapter.ViewHolder>()
