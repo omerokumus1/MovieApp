@@ -1,7 +1,8 @@
 package com.example.movieapp.di
 
+import android.util.Log
 import com.example.movieapp.utils.Constants
-import com.example.movieapp.utils.`interface`.PostApi
+import com.example.movieapp.utils.interfaces.PostApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -13,24 +14,33 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-
+    @Singleton
     @Provides
-    internal fun provideRetrofit(gson: Gson): Retrofit{
+    fun provideRetrofit(gson: Gson): Retrofit{
+        Log.d("provideRetrofit", "executed")
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 
+    @Singleton
     @Provides
-    internal fun provideGson(): Gson{
+    fun provideGson(): Gson{
+        Log.d("provideGson", "executed")
         return GsonBuilder().setLenient().create()
 
     }
 
+
+    @Singleton
     @Provides
-    internal fun providePostApi(retrofit: Retrofit): PostApi {
+    fun providePostApi(retrofit: Retrofit): PostApi {
+        Log.d("providePostApi", "executed")
         return retrofit.create(PostApi::class.java)
     }
+
+
+
 
 }

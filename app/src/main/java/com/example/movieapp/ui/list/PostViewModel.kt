@@ -2,44 +2,36 @@ package com.example.movieapp.ui.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.movieapp.di.DaggerRetrofitComponent
-import com.example.movieapp.utils.`interface`.PostApi
+import com.example.movieapp.utils.interfaces.PostApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import javax.inject.Inject
 
-class PostViewModel: ViewModel() {
+class PostViewModel : ViewModel() {
     val postData = MutableLiveData<MutableList<PostModel>>()
+
 //
 //    var retrofit: Retrofit? = null
 //        @Inject set
-//
-//    var postApi: PostApi? = null
-//        @Inject set
-//    @Inject
 
-    var retrofit: Retrofit? = null
-        @Inject set
 
-//    @Inject
-//    var postApi: PostApi? = null
+    var postApi: PostApi? = null
+//    lateinit var postApi: PostApi
 
     init {
 //        gson = GsonFactory.buildGson()
 //        retrofit = RetrofitFactory.buildRetrofitFrom() // service locator
-        DaggerRetrofitComponent.builder().build().inject(this)
+
 
         getPosts()
     }
 
     fun getPosts() {
-        val postApi = retrofit?.create(PostApi::class.java)
+//        val postApi = retrofit?.create(PostApi::class.java)
 //        postApi = retrofit?.create(PostApi::class.java)
         var call: Call<List<PostModel>>? = null
-        if(postApi != null)
-            call = postApi.getPosts()
+        if (postApi != null)
+            call = postApi?.getPosts()
 
         /*
             call.execute ile senkron çalışırsın. Asenkron bir kodun içinde bunu kullanarak totalde

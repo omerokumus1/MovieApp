@@ -1,5 +1,4 @@
-package com.example.movieapp.utils.`interface`
-
+package com.example.movieapp.utils.interfaces
 import com.example.movieapp.ui.list.PostModel
 import retrofit2.Call
 import retrofit2.http.GET

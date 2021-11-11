@@ -1,5 +1,6 @@
 package com.example.movieapp.ui.list
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,20 @@ import com.example.movieapp.MyApp
 import com.example.movieapp.R
 import com.example.movieapp.utils.adapter.PostAdapter
 import com.example.movieapp.databinding.FragmentPostBinding
+import com.example.movieapp.utils.interfaces.PostApi
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 class PostFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
     private var postViewModel: PostViewModel? = null
+
+    @Inject
+    lateinit var postApi: PostApi
+
+    @Inject
+    lateinit var retrofit: Retrofit
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,13 +39,16 @@ class PostFragment : Fragment() {
 
 
         recyclerView = binding.recyclerView
-//        postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
-//        MyApp.appComponent.inject()
 
         initPosts()
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        MyApp.appComponent.inject(this)
     }
 
     private fun initPosts() { // DifUtil uygula: datayı değiştirmek için
