@@ -39,7 +39,7 @@ class PostFragment : Fragment() {
 
 
         recyclerView = binding.recyclerView
-        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
+//        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
 
         initPosts()
@@ -48,7 +48,7 @@ class PostFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        MyApp.appComponent.inject(this)
+//        MyApp.appComponent.inject(this)
     }
 
     private fun initPosts() { // DifUtil uygula: datayı değiştirmek için

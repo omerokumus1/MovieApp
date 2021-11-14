@@ -2,7 +2,7 @@ package com.example.movieapp.di
 
 import android.util.Log
 import com.example.movieapp.utils.Constants
-import com.example.movieapp.utils.interfaces.PostApi
+import com.example.movieapp.utils.interfaces.MovieApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -35,9 +35,9 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePostApi(retrofit: Retrofit): PostApi {
-        Log.d("providePostApi", "executed")
-        return retrofit.create(PostApi::class.java)
+    fun provideMovieApi(retrofit: Retrofit): MovieApi {
+        Log.d("provideMovieApi", "executed")
+        return retrofit.create(MovieApi::class.java)
     }
 
 
