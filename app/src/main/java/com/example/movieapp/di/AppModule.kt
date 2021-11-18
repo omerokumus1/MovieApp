@@ -1,6 +1,5 @@
 package com.example.movieapp.di
 
-import android.util.Log
 import com.example.movieapp.utils.Constants
 import com.example.movieapp.utils.interfaces.MovieApi
 import com.google.gson.Gson
@@ -17,7 +16,6 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit{
-        Log.d("provideRetrofit", "executed")
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -27,7 +25,6 @@ class AppModule {
     @Singleton
     @Provides
     fun provideGson(): Gson{
-        Log.d("provideGson", "executed")
         return GsonBuilder().setLenient().create()
 
     }
@@ -36,7 +33,6 @@ class AppModule {
     @Singleton
     @Provides
     fun provideMovieApi(retrofit: Retrofit): MovieApi {
-        Log.d("provideMovieApi", "executed")
         return retrofit.create(MovieApi::class.java)
     }
 

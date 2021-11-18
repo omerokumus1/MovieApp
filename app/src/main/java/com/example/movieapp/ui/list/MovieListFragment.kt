@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.MyApp
 import com.example.movieapp.R
+import com.example.movieapp.database.MovieDatabase
 import com.example.movieapp.databinding.FragmentMovieBinding
 import com.example.movieapp.utils.adapter.MovieAdapter
 
-class MovieFragment : Fragment() {
+class MovieListFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
-    private var movieViewModel: MovieViewModel? = null
+    private var movieListViewModel: MovieListViewModel? = null
 
 
     override fun onCreateView(
@@ -28,10 +28,18 @@ class MovieFragment : Fragment() {
             inflater, R.layout.fragment_movie, container, false
         )
 
-
         recyclerView = binding.recyclerView
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
-        getMovies()
+
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = MovieDatabase.getInstance(application).movieDatabaseDao
+        val viewModelFactory = MovieListViewModelFactory(dataSource, application)
+
+        movieListViewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
+        binding.lifecycleOwner = this
+
+
+        drawMoviesByObserving()
         return binding.root
     }
 
@@ -40,8 +48,9 @@ class MovieFragment : Fragment() {
 
     }
 
-    private fun getMovies() { // DifUtil uygula: datayı değiştirmek için
-        movieViewModel?.movieData?.observe(viewLifecycleOwner, { movieModels ->
+    private fun drawMoviesByObserving() { // DifUtil uygula: datayı değiştirmek için
+
+        movieListViewModel?.movies?.observe(viewLifecycleOwner, { movieModels ->
             val movieAdapter =
                 MovieAdapter(movieModels) // yeni adaptör oluşturuyor, sorun mu? Evet, onun yerine DifUtil ile datayı değiştir
             recyclerView?.adapter = movieAdapter
