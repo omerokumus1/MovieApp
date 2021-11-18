@@ -1,0 +1,8 @@
+1- Apply DifUtil for getPosts method in MovieListFragment
+2- Move appComponent.inject in MovieListViewModel to fragment
++3- Apply dagger for movieApi in MovieListViewModel
+4- Extract SerializedName values from MovieResponse
++5- Apply factory for MovieViewModel (for repo and api)
+6- Paging
+7- MovieRepository by Dagger in MovieListViewModel
+8- MovieDatabase'deki companion object'i dagger'a taşı.
