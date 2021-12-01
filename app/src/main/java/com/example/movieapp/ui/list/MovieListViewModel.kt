@@ -1,13 +1,17 @@
 package com.example.movieapp.ui.list
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.movieapp.MyApp
 import com.example.movieapp.database.MovieDatabaseDao
-import com.example.movieapp.utils.interfaces.MovieApi
+import com.example.movieapp.retrofit.MovieApi
+
 import com.example.movieapp.utils.response.MovieListResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,29 +35,11 @@ class MovieListViewModel(
     }
 
     private fun fetchMovies() {
-        // Dagger??
-        val responseCall: Call<MovieListResponse> = movieApi.searchMovies(page = "1")
-        responseCall.enqueue(object : Callback<MovieListResponse> {
-            override fun onFailure(call: Call<MovieListResponse>?, t: Throwable?) {
+        viewModelScope.launch(Dispatchers.IO) {
+           val response = movieApi.searchMovies(page = "1")
+            if(response.isSuccessful){
+                movies.postValue(response.body()?.movies)
             }
-
-            override fun onResponse(
-                call: Call<MovieListResponse>?,
-                response: Response<MovieListResponse>?
-            ) {
-                if (response?.code() == 200) {
-                    Log.v("Tag", "the response ${response.body().toString()}")
-                    movies.postValue(response.body()?.movies)
-
-                } else {
-                    try {
-                        Log.v("Tag", "Error ${response?.errorBody().toString()}")
-                    } catch (e: Exception) {
-                        Log.v("Tag", "Exception")
-                    }
-                }
-            }
-
-        })
+        }
     }
 }

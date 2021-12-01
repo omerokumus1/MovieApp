@@ -24,6 +24,7 @@ class MovieAdapter(private val movieModels: MutableList<MovieModel>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_row, parent, false)
+        view.setOnClickListener {  }
         return MovieViewHolder(view)
     }
 
