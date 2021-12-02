@@ -7,15 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.movieapp.MyApp
 import com.example.movieapp.database.MovieDatabaseDao
 import com.example.movieapp.retrofit.MovieApi
-
-import com.example.movieapp.utils.response.MovieListResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
 
 class MovieListViewModel(

@@ -1,4 +1,4 @@
-package com.example.movieapp.utils.response
+package com.example.movieapp.retrofit
 
 import com.example.movieapp.ui.list.MovieModel
 import com.google.gson.annotations.Expose
