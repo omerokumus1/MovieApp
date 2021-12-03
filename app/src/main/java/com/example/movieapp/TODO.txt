@@ -6,7 +6,7 @@
 6- Paging
 7- MovieRepository by Dagger in MovieListViewModel
 8- MovieDatabase'deki companion object'i dagger'a taşı.
-9- Make movies clickable and apply navigation
++9- Make movies clickable and apply navigation
 +10- MovieApi, retrofit coroutine plugin
 +11- suspend function MovieApi
 12- Find places to put coroutines

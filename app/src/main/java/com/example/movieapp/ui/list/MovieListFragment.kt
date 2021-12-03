@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.database.MovieDatabase
 import com.example.movieapp.databinding.FragmentMovieBinding
-import com.example.movieapp.utils.adapter.MovieAdapter
+import com.example.movieapp.recyclerview.MovieAdapter
 
 class MovieListFragment : Fragment() {
 

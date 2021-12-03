@@ -1,8 +1,11 @@
 package com.example.movieapp.ui.list
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MovieModel(
 
     @SerializedName("id")
@@ -32,4 +35,4 @@ data class MovieModel(
     @SerializedName("overview")
     @Expose
     var overview: String?,
-)
+) : Parcelable

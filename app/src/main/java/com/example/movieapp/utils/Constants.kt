@@ -4,5 +4,6 @@ package com.example.movieapp.utils
 class Constants {
     companion object{
         val BASE_URL = "https://api.themoviedb.org"
+        val POSTER_PATH = "https://image.tmdb.org/t/p/w500/"
     }
 }

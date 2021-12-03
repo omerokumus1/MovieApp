@@ -2,7 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id("kotlin-parcelize")
 }
+
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 30
@@ -102,4 +105,12 @@ dependencies {
 
     // Testing
     testImplementation "com.google.truth:truth:1.0.1"
+
+    // Navigation fragment
+    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+
+    // Safe arguments
+
+
 }
